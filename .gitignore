@@ -1,3 +1,7 @@
+# Directories
+job_recsys/data/
+other_libs/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
