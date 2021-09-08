@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Evaluation</title>
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{url_for('static', filename='css/all.min.css') }}">
+	<link rel="stylesheet" href="{{url_for('static', filename='css/adminlte.min.css') }}">
+</head>
+
+<body class="layout-top-nav">
+	<div class="wrapper">
+
+		<div class="content-wrapper">
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-5">
+							<!-- <div class="col-md-6" style="height: 100vh;"> -->
+							<div class="row">
+								<div class="col-md-12" id="profile">
+									<div class="card">
+										<div class="card-header">
+											<h3 class="card-title">Profile</h3>
+										</div>
+										<!-- /.card-header -->
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-6">
+													<strong><i class="fas fa-calendar mr-1"></i>Exp year</strong>
+													{% if exp_year %}
+													<p class="text-muted">{{exp_year}} năm</p>
+													{% endif %}
+												</div>
+												<div class="col-sm-6">
+													<strong><i class="fas fa-book mr-1"></i>Joblv</strong>
+													<p class="text-muted">{{job_lv_name}}</p>	
+												</div>
+											</div>
+											<strong><i class="fas fa-pencil-alt mr-1"></i>Skills</strong>
+											<p class="text-muted">
+												<span>{{skills}}</span>
+											</p>
+											<strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+											<p class="text-muted">
+												<span>{{location}}</span>
+												<!-- {% for lo in location %}
+												<span>{{lo}}</span>
+												{% endfor %} -->
+											</p>
+										</div>
+										<!-- /.card-body -->
+									</div>
+								</div>
+							</div>
+							<div class="row" id="cv">
+								
+								<!-- <iframe src="" style="width: 100%;"></iframe> -->
+								<iframe id="cv_iframe" src="{{url_for('static', filename='upload_resumes/')}}{{filename}}#zoom=FitH"></iframe>
+								<!-- <iframe src="{{url_for('static', filename='upload_resumes/')}}{{filename}}#zoom=FitH" style="position: relative; height: 57.5vh; width: 100%;"></iframe> -->
+							</div>
+							<br>
+						</div>
+						<div class="col-md-7">
+							<div id="jd" style="overflow: scroll;height: 100vh;">
+							{% for jd in jd_list %}
+							<div class="card">
+								<div class="card-header">
+									<h3 class="card-title">JD{{loop.index}}</h3>
+									<b><p style="font-size: medium; float: right;">Similarity: {{jd['max_similarity']}}%</p></b>
+								</div>
+								<!-- /.card-header -->
+								<div class="card-body">
+									<table class="table table-striped">
+										<tbody>
+											{%for f in jd %}
+												{% if f != 'max_similarity' %}
+												<tr>
+												<td style="width:100px;">{{f}}</td>
+												<td style="white-space: pre-wrap;">{{jd[f]}}</td>
+												</tr>
+												{% endif %}
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+								<!-- /.card-body -->
+							</div>
+							{% endfor %}
+							</div>
+		
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	var pf_div = document.getElementById("profile");
+	var pf_height = pf_div.clientHeight
+
+	var jd_div = document.getElementById("jd");
+	var jd_height = jd_div.clientHeight
+
+	var cv_iframe = document.getElementById("cv_iframe");
+	cv_iframe.style = "position:relative; width:100%; height:" + (jd_height - 7.5 - pf_height) + "px;"
+	$(document).ready(function(){
+		$('#cv_iframe').each(function() {
+			var src = this.src.toLowerCase();
+			console.log('src = ' + src)
+			if (src == 'http://127.0.0.1:5000/static/upload_resumes/#zoom=fith') {
+				$(this).hide();
+			} else {
+				$(this).show();
+			}
+		});
+	});
+</script>
+</html>
