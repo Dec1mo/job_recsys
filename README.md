@@ -3,7 +3,7 @@
 
 ---
 
-<p align="center"> A system that recommends suitable jobs for an user-provided resume (pdf files) and/or profile.
+<p align="center"> A end-to-end system that recommends suitable jobs for an user-provided resume (in pdf) and/or profile.
     <br> 
 </p>
 
