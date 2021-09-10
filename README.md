@@ -3,12 +3,12 @@
 
 ---
 
-<p align="center"> A end-to-end system that recommends suitable jobs for an user-provided resume (in pdf) and/or profile.
+<p align="center"> An end-to-end system that recommends suitable jobs for an user-provided resume (in pdf) and/or profile.
     <br> 
 </p>
 
 ## TL;DR
-In this project, I built an end-to-end job recommend system by using **CV Parser** for transfering a pdf CV file to a json file with some important infomation like: ```studytime```,  ```workingtime```, ```position```, ```experience```, ```address```,... and **Skill Extractor** for extracting a set of skills from a text (such as experiences or job requirements,...). These two components were developed by my colleagues at DSLab - Hanoi University of Science and Technologies and unfortunately, we can't make them and the data used in job_recsys public. Then, I developed **Feature Normalizer** for skills clustering and feature extraction and **Ranking Component** for embedding those features into vector space and matching them to get appropriate results. For more detailed information, please check my [presentation file](https://github.com/Dec1mo/job_recsys/blob/main/docs/ThaiDD_Job_RecSys.pdf).
+In this project, I built an end-to-end job recommend system by using **CV Parser** for transfering a pdf CV file to a json file with some important infomation like ```studytime```,  ```workingtime```, ```position```, ```experience```, ```address```,... and **Skill Extractor** for extracting a set of skills from a text (such as experiences or job requirements,...). These two components were developed by my colleagues at DSLab - Hanoi University of Science and Technologies and unfortunately, we can't make them and the data used in job_recsys public. Then, I developed **Feature Normalizer** for skills clustering and feature extraction and **Ranking Component** for embedding those features into vector space and matching them to get appropriate results. 
 
 ## Table of Contents
 + [Overview](#overview)
@@ -37,7 +37,7 @@ I only made a simple two-page flask web app in order to show how job_recsys work
 </p>
 
 ## How it works <a name = "working"></a>
-I highly recommend checking my [presentation file](https://github.com/Dec1mo/job_recsys/blob/main/docs/ThaiDD_Job_RecSys.pdf) for detailed infomation.
+I recommend you checking my [presentation file](https://github.com/Dec1mo/job_recsys/blob/main/docs/ThaiDD_Job_RecSys.pdf) for detailed infomation.
 ### CV Parser
 **CV Parser** transfers a pdf CV file to a json file with some important infomation like: ```studytime```,  ```workingtime```, ```position```, ```experience```, ```address```,...
 <p align="center">
@@ -61,7 +61,7 @@ I highly recommend checking my [presentation file](https://github.com/Dec1mo/job
 ### Ranking Component
 **Ranking Component** consists of 2 component:
 - Embedding Component uses TFIDF, LSA or SimilarityEncoding to embed features into vector space.
-- Matching Component: computes weighted average of cosine similarity or Word Mover’s Distance (WMD) between user's vector and job description's vector; then ranks them to obtain top k matches.
+- Matching Component computes weighted average of cosine similarity or Word Mover’s Distance (WMD) between user's vector and job description's vector; then ranks them to obtain top k matches.
 <p align="center">
   <img src="https://github.com/Dec1mo/job_recsys/blob/main/docs/ranking_component.png?raw=true" />
 </p>
@@ -69,11 +69,11 @@ I highly recommend checking my [presentation file](https://github.com/Dec1mo/job
 ## Getting Started <a name = "getting_started"></a>
 ### Requirements
 + CV Parser API (private)
-+ Skill Extractor (private)
++ Skill Extractor API (private)
 + Data: resumes, job descriptions, skills (private)
-+ Others
++ Other libraries
 
-⚠ Warning: Apparently, you don't have the private stuff so you can't make any good recommendations. You can still treat this project as a guideline for building an end-to-end recommentation system. Also, you can turn on the web app and mess with its interface.
+⚠ Warning: Apparently, you don't have the private stuff so recommendations can't be made probably. You can still treat this project as a guideline for building an end-to-end recommentation system. Also, you can turn on the web app and mess with its interface.
 
 ### Installing
 After cloning this project, you will want to process data and save some pipelines beforehand.
@@ -94,4 +94,4 @@ Everything is prepared.
 ```
 >> python app/run.py
 ```
-From this moment, job_recsys is ready to recommend 😎.
+job_recsys is now ready to recommend some suitable jobs for you 😎.
